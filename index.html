@@ -1687,7 +1687,7 @@ document.addEventListener("click",e=>{
     case"delhouseimg":state.settings.houseImg="";save();render();break;
     case"gosc2":{const e2=$(el.dataset.sc);if(e2)e2.scrollIntoView({behavior:"smooth",block:"start"})}break;
     case"togbyty":u.bytyOpen=u.bytyOpen===false;render();break;
-    case"odecty":if(!apts().length){say("Nejdřív přidejte alespoň jeden byt (Nastavení → Byty, nebo průvodce zavedením domu).");break}if(!W)startWizard(u.sel||apts()[0].id);break;
+    case"odecty":if(!apts().length){say("Nejdřív přidejte alespoň jeden byt (Nastavení → Byty, nebo průvodce zavedením domu).");break}if(!W)startWizard(u.sel||apts()[0].id);else{u.tab="wiz";u.view=null;render();window.scrollTo(0,0)}break;
     case"gosc":u.tab="house";u.view=null;render();setTimeout(()=>{const e=$(el.dataset.sc);if(e)e.scrollIntoView({behavior:"smooth",block:"start"})},60);break;
     case"editapt":aptForm(apt(id));break;
     case"filt":state.ui.f=id;render();break;
@@ -1695,7 +1695,7 @@ document.addEventListener("click",e=>{
     case"gotoset":u.tab=el.dataset.apt;u.view={t:"set",id};render();window.scrollTo(0,0);break;
     case"delaptimg":apt(id).img="";save();render();break;
     case"theme":state.settings.theme=id;save();render();break;
-    case"wiz":startWizard(id);break;
+    case"wiz":if(W&&String(W.aptId)===String(id)&&!W.edit){u.tab="wiz";u.view=null;render();window.scrollTo(0,0)}else startWizard(id);break;
     case"wcancel":ask("Zrušit rozpracované vyúčtování? Zadané údaje se neuloží.",()=>{const t=W.aptId;W=null;u.tab=t;render()});break;
     case"wback":{const st=stepsOf(W),i=st.indexOf(W.step);if(i>0){W.step=st[i-1];render();window.scrollTo(0,0)}break}
     case"wnext":{const err=wizValidate();if(err){say(err);break}const st=stepsOf(W),i=st.indexOf(W.step);
