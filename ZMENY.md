@@ -1,0 +1,33 @@
+# Správa majetku – seznam změn
+
+## 1.1 (27. 11. 2026)
+- Menší a úspornější vzhled podle grafika: výchozí velikost „Střední“, menší písmo, tlačítka, menu, karty, průvodci i obrázky.
+- Nastavení → Velikost zobrazení: Malá / Střední / Velká (pamatuje se). Na dotykových zařízeních zůstávají ovládací prvky alespoň 48 px.
+- Levé menu: nové ikony od grafika; celé menu se vejde na obrazovku; Ceny a Faktury se v menu podsvítí a cílová karta krátce blikne; text v menu se při klikání neoznačuje; patička menu na dva řádky (Autor / O aplikaci) menším písmem.
+- Obrázky domu a bytů: výběr z připravených ilustrací (4 domy, 9 bytů, garáž, zahrada, jiný objekt), vlastní obrázek s ořezem (posun, přiblížení, otočení, celý obrázek / vyplnit), Obnovit výchozí, Bez obrázku s potvrzením.
+- Prázdná aplikace: Evidence bez bytů nabízí „Přidat byt“; okno „Nejdřív přidejte byt“ vede rovnou k přidání bytu; upozornění mají jen jedno tlačítko OK.
+- Nové ilustrace prázdných stavů (byty, dokumenty, smlouvy) od grafika.
+- Cesta ke složce s daty dole je zkrácená na jeden řádek (celá cesta v bublině po najetí myší).
+- Nová ikona aplikace; na Macu zaoblená. Nové pozadí DMG, obrázky instalátoru Windows.
+- Instalátor Windows: doplněn český text (druhé zaškrtávátko = „Vytvořit zástupce na ploše“) a ostatní české hlášky.
+- Okno aplikace si pamatuje velikost a polohu; výchozí velikost 1180 × 780.
+- Android: adaptivní ikona z vrstev od grafika, barva úvodní obrazovky (světlá / tmavá).
+
+## 1.0 (první vydání)
+- Přejmenování na „Správa majetku“; v záhlaví jméno majitele.
+- Průvodce prvním spuštěním (kam ukládat data) a průvodce zavedením domu (tarif VT/NT, počet měřidel, byty, garáže, zahrady, ceny).
+- Souhlas s podmínkami: blikající upozornění, bez souhlasu pouze ukázková data. Po smazání dat se souhlas vyžaduje znovu.
+- Prázdný start: byty se zakládají v průvodci (i jediný byt). Ukázková data mají tři byty.
+- Volitelný zámek aplikace (heslo s nápovědou a kódem pro obnovení, Face ID / Touch ID – neověřeno).
+- Více objektů (domů) a přehledy v agendě majitele; přepínač domu a roku v liště.
+- Zvonek: nové/staré, odložit, smazat, filtrace.
+- Evidence majetku a nářadí s fotografiemi, škody, opravy, revize, předávací protokol.
+- Export: Excel (.xlsx), Word (.docx), CSV; Numbers a Pages otevřou xlsx/docx.
+- Zobrazení pro PC, iPad, iPhone, Android (telefon, tablet); PWA verze pro Safari.
+- Zkušební tisk na Bluetooth účtenkovou tiskárnu (Nastavení) – pouze ověřovací funkce.
+
+## Nezkoušeno na zařízeních
+Sestavení Tauri (Mac, Windows x64/ARM, Android), tisk/PDF v Tauri, ukládání do souboru v Tauri, biometrie, Android sdílení souborů.
+
+- Hlavička: název aplikace se už nezalamuje ani nepřetéká přes okraj (zkontrolováno ve vestavěném prohlížeči Claude, ne v Safari).
+- PWA service worker v7: při instalaci obchází HTTP cache, aby se po aktualizaci nenačetla stará verze (nová verze se i tak naplno projeví až při druhém otevření).
