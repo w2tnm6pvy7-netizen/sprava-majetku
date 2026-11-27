@@ -46,7 +46,7 @@ async function escSend(bytes){
   if(!ch)for(const s of sv){for(const c of await s.getCharacteristics()){if(!ch&&(c.properties.write||c.properties.writeWithoutResponse))ch=c}}
   window.ESC_INFO=info.join("\n");
   if(!ch)throw new Error("Nenalezena zapisovatelná charakteristika.\n"+ESC_INFO);
-  const SP=escSpd(),CH=SP[0];for(let i=0;i<bytes.length;i+=CH){const part=bytes.slice(i,i+CH);if(ch.properties.writeWithoutResponse)await ch.writeValueWithoutResponse(part);else await ch.writeValue(part);await new Promise(r=>setTimeout(r,SP[1]))}
+  const SP=escSpd();let CH=SP[0],i=0;while(i<bytes.length){const part=bytes.slice(i,i+CH);try{if(ch.properties.writeWithoutResponse)await ch.writeValueWithoutResponse(part);else await ch.writeValue(part)}catch(er){const m=/limit of (\d+) bytes/.exec(String(er&&er.message||er));if(m&&+m[1]>0&&+m[1]<CH){CH=+m[1];continue}throw er}i+=part.length;await new Promise(r=>setTimeout(r,SP[1]))}window.ESC_INFO=(window.ESC_INFO||"")+"\nVelikost bloku: "+CH+" B";
   await new Promise(r=>setTimeout(r,1500));
   try{d.gatt.disconnect()}catch(e){}return"Data odeslána do zařízení "+(d.name||"")+" (tisk neověřen – zkontrolujte papír).\n\nNalezené charakteristiky:\n"+(window.ESC_INFO||"")}
 
