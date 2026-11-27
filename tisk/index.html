@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zkouška tisku – účtenková tiskárna (BLE)</title>
+<style>body{font:16px/1.4 -apple-system,Segoe UI,Open Sans,sans-serif;margin:0;padding:16px;max-width:640px;margin:auto;background:#f4f7fb;color:#12233a}h1{font-size:1.3rem}.b{display:block;width:100%;padding:14px;margin:8px 0;font-size:1rem;border-radius:12px;border:1px solid #9bb0c9;background:#fff}.p{background:#1459c9;color:#fff;border:0;font-weight:700}.row{display:flex;gap:8px}.row .b{flex:1}.on{outline:3px solid #1459c9}pre{background:#fff;border-radius:10px;padding:10px;white-space:pre-wrap;word-break:break-word;font-size:.8rem}small{color:#53667f}</style><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="../ikony/apple-touch-icon.png"><meta name="theme-color" content="#1459c9"></head><body>
+<h1>Zkouška tisku na BLE účtenkovou tiskárnu</h1>
+<small>Samostatná zkušební stránka (ESC/POS). Žádná data se nikam neodesílají; vše běží ve vašem zařízení. Potřebuje prohlížeč s Web Bluetooth (Chrome/Edge, na iPhonu Safari s rozšířením beacio nebo prohlížeč Bluefy) a adresu https.</small>
+<p><b>Šířka papíru</b></p><div class="row"><button class="b" id="w48">80 mm (48 zn.)</button><button class="b" id="w32">58 mm (32 zn.)</button></div>
+<p><b>Znaková stránka</b></p><div class="row"><button class="b" id="c1250">Windows-1250</button><button class="b" id="c852">CP852</button></div>
+<label class="b">Logo… (nepovinné)<input id="lg" type="file" accept="image/*" style="display:none"></label>
+<button class="b" id="prev">Náhled dat</button>
+<button class="b p" id="go">Zkušební tisk</button>
+<pre id="out">Připraveno.</pre>
+<script>
+const state={settings:{escW:48,escCp:"c1250"}};const TAURI=null;
+const $=id=>document.getElementById(id);
+function say(m){$("out").textContent=m}
+function save(){}function flash(m){say(m)}
+function render(){["w48","w32"].forEach(k=>$(k).classList.toggle("on",String(state.settings.escW)===k.slice(1)));["c1250","c852"].forEach(k=>$(k).classList.toggle("on",state.settings.escCp===k))}
+/* ===== Účtenková tiskárna (ESC/POS) – zkušební */
+const ESCP={maps:{c852:{"á":160,"č":159,"ď":212,"é":130,"ě":216,"í":161,"ň":229,"ó":162,"ř":253,"š":231,"ť":156,"ú":163,"ů":133,"ý":236,"ž":167,"Á":181,"Č":172,"Ď":210,"É":144,"Ě":183,"Í":214,"Ň":213,"Ó":224,"Ř":252,"Š":230,"Ť":155,"Ú":233,"Ů":222,"Ý":237,"Ž":166,"ä":132,"ö":148,"ü":129,"Ä":142,"Ö":153,"Ü":154,"ß":225,"§":245,"°":248,"×":158},c1250:{"á":225,"č":232,"ď":239,"é":233,"ě":236,"í":237,"ň":242,"ó":243,"ř":248,"š":154,"ť":157,"ú":250,"ů":249,"ý":253,"ž":158,"Á":193,"Č":200,"Ď":207,"É":201,"Ě":204,"Í":205,"Ň":210,"Ó":211,"Ř":216,"Š":138,"Ť":141,"Ú":218,"Ů":217,"Ý":221,"Ž":142,"ä":228,"ö":246,"ü":252,"Ä":196,"Ö":214,"Ü":220,"ß":223,"€":128,"§":167,"°":176,"±":177,"×":215}},n:{c852:18,c1250:30}};
+function escCp(){return(state.settings&&state.settings.escCp)||"c1250"}
+function escEnc(str){const M=ESCP.maps[escCp()],o=[];for(const ch of String(str)){const c=ch.charCodeAt(0);if(c<128)o.push(c);else if(M[ch]!=null)o.push(M[ch]);else o.push(63)}return o}
+function escposBuild(lines,o){o=o||{};const W=o.width||(state.settings&&state.settings.escW)||48,B=[0x1b,0x40,0x1b,0x74,ESCP.n[escCp()]];
+  const push=a=>a.forEach(x=>B.push(x));
+  (lines||[]).forEach(L=>{if(typeof L==="string")L={t:L};
+    if(L.sep){push(escEnc("-".repeat(W)));B.push(10);return}
+    B.push(0x1b,0x61,L.c?1:L.r?2:0);B.push(0x1b,0x45,L.b?1:0);B.push(0x1d,0x21,L.big?0x11:0);
+    if(L.l!=null&&L.v!=null){const a=String(L.l),v=String(L.v),sp=Math.max(1,W-a.length-v.length);push(escEnc(a+" ".repeat(sp)+v))}else push(escEnc(L.t||""));
+    B.push(10)});
+  B.push(0x1b,0x61,0,0x1b,0x45,0,0x1d,0x21,0,10,10,10);if(o.cut)B.push(0x1d,0x56,0x42,0);
+  return new Uint8Array(B)}
+function escTestLines(){const h=state.settings.house||{},ow=state.settings.owner||{};
+  return[{t:"Správa majetku",c:1,b:1,big:1},{t:h.name||"Zkušební tisk",c:1},{sep:1},{t:"Příliš žluťoučký kůň úpěl ďábelské ódy",c:0},{t:"ÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ áčďéěíňóřšťúůýž"},{sep:1},{l:"Záloha",v:"3 000,00 Kč"},{l:"Celkem",v:"12 345,67 Kč",b:1},{sep:1},{t:ow.name||"",c:1},{t:new Date().toLocaleString("cs-CZ"),c:1}]}
+
+function escRaster(canvas,maxW){const w=Math.min(canvas.width,maxW||576),h=Math.round(canvas.height*w/canvas.width),c=document.createElement("canvas");c.width=Math.ceil(w/8)*8;c.height=h;const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(canvas,Math.floor((c.width-w)/2),0,w,h);
+  const d=x.getImageData(0,0,c.width,h).data,wb=c.width/8,B=[0x1d,0x76,0x30,0,wb&255,wb>>8,h&255,h>>8];
+  for(let y=0;y<h;y++)for(let b=0;b<wb;b++){let v=0;for(let k=0;k<8;k++){const i=(y*c.width+b*8+k)*4,l=0.3*d[i]+0.59*d[i+1]+0.11*d[i+2];if(l<140&&d[i+3]>40)v|=0x80>>k}B.push(v)}
+  return B}
+function escLogoPick(inp){const f=inp.files&&inp.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=im.width;c.height=im.height;c.getContext("2d").drawImage(im,0,0);const w=Math.min(576,im.width),h=Math.round(im.height*w/im.width),t=document.createElement("canvas");t.width=w;t.height=h;t.getContext("2d").drawImage(im,0,0,w,h);state.settings.escLogo=t.toDataURL("image/png");save();render();flash("Logo uloženo")};im.src=URL.createObjectURL(f)}
+function escLogoBytes(){return new Promise(res=>{const u=state.settings.escLogo;if(!u)return res([]);const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=im.width;c.height=im.height;c.getContext("2d").drawImage(im,0,0);res([0x1b,0x61,1,...escRaster(c,576),10,0x1b,0x61,0])};im.onerror=()=>res([]);im.src=u})}
+async function escSend(bytes){
+  if(TAURI){try{await TAURI.core.invoke("ble_print",{data:Array.from(bytes)});return"Odesláno přes aplikaci (Tauri)."}catch(e){throw new Error("Tauri tisk: "+e)}}
+  if(!navigator.bluetooth)throw new Error("Tento prohlížeč nemá Web Bluetooth. Na iPhonu/iPadu a v Safari je potřeba nativní modul (Tauri). Zkoušku proveďte v Chrome/Edge na počítači nebo na Androidu.");
+  const d=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:["000018f0-0000-1000-8000-00805f9b34fb","49535343-fe7d-4ae5-8fa9-9fafd205e455","e7810a71-73ae-499d-8c15-faa9aef0c3f2","0000ff00-0000-1000-8000-00805f9b34fb","0000fff0-0000-1000-8000-00805f9b34fb"]});
+  const gs=await d.gatt.connect(),sv=await gs.getPrimaryServices();let ch=null,info=[];
+  for(const s of sv){for(const c of await s.getCharacteristics()){const pr=["write","writeWithoutResponse","notify","read"].filter(k=>c.properties[k]);info.push(s.uuid.slice(0,8)+"/"+c.uuid.slice(0,8)+" "+pr.join(","));if(!ch&&c.properties.write&&c.properties.writeWithoutResponse)ch=c}}
+  if(!ch)for(const s of sv){for(const c of await s.getCharacteristics()){if(!ch&&(c.properties.write||c.properties.writeWithoutResponse))ch=c}}
+  window.ESC_INFO=info.join("\n");
+  if(!ch)throw new Error("Nenalezena zapisovatelná charakteristika.\n"+ESC_INFO);
+  const CH=75;for(let i=0;i<bytes.length;i+=CH){const part=bytes.slice(i,i+CH);if(ch.properties.writeWithoutResponse)await ch.writeValueWithoutResponse(part);else await ch.writeValue(part);await new Promise(r=>setTimeout(r,60))}
+  await new Promise(r=>setTimeout(r,1500));
+  try{d.gatt.disconnect()}catch(e){}return"Data odeslána do zařízení "+(d.name||"")+" (tisk neověřen – zkontrolujte papír).\n\nNalezené charakteristiky:\n"+(window.ESC_INFO||"")}
+
+$("w48").onclick=()=>{state.settings.escW=48;render()};$("w32").onclick=()=>{state.settings.escW=32;render()};
+$("c1250").onclick=()=>{state.settings.escCp="c1250";render()};$("c852").onclick=()=>{state.settings.escCp="c852";render()};
+$("lg").onchange=e=>escLogoPick(e.target);
+$("prev").onclick=()=>say(escposBuild(escTestLines(),{cut:1}).length+" bajtů; logo: "+(state.settings.escLogo?"ano":"ne")+"\n\n"+escTestLines().map(L=>L.sep?"-".repeat(state.settings.escW):(L.l!=null?L.l+"  "+L.v:L.t)).join("\n"));
+$("go").onclick=()=>escLogoBytes().then(lg=>{const t=escposBuild(escTestLines(),{cut:1}),b=new Uint8Array(t.length+lg.length);b.set(t.slice(0,5));b.set(lg,5);b.set(t.slice(5),5+lg.length);return escSend(b)}).then(say).catch(e=>say(String(e.message||e)));
+render();
+</script><script>if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol))window.addEventListener("load",function(){navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(function(){})});</script></body></html>
