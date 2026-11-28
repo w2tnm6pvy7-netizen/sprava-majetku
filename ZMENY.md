@@ -1,5 +1,16 @@
 # Správa majetku – seznam změn
 
+## 1.5.1 (28. 11. 2026)
+- Přehled: karta „Co je potřeba udělat“ (nejdůležitější upozornění na jednom místě, proklik) a zůstatek fondu oprav.
+- Nové agendy: Revize a termíny (samostatně v Provozu, rychlé přidání komín / kotel / hasicí přístroj…), Klíče a čipy (kdo má co, vráceno), Krizová karta (uzávěry, havarijní a tísňová čísla, funguje offline), Hledat (byty, nájemníci, osoby, měřidla, faktury, fond, revize, klíče).
+- Ověření (cejch) i u hlavních měřidel domu, upozornění ve zvonku.
+- Průvodce vyúčtováním upozorní, když je nový stav nižší než minule nebo je spotřeba víc než 3× vyšší než v minulém období (možný únik vody).
+- Fond oprav: Tisk / PDF.
+- Mac: když aplikace neběží ze složky Aplikace, nabídne „Přesunout do Aplikací“ a sama se přesune a restartuje.
+- Počítač: při zavření automatická záloha do složky se zálohami (uchová posledních 30, lze vypnout v Nastavení); při rozpracovaném vyúčtování se zeptá.
+- Vydání obsahuje instalátory s jasnými názvy (INSTALACE-Mac.dmg, INSTALACE-Windows.exe) a návod „Jak nainstalovat“.
+- Oprava: na iPhonu se pod otevřeným oknem (např. O aplikaci) už neukazuje kus menu.
+
 ## 1.5 (28. 11. 2026)
 - Automatické aktualizace na Macu a ve Windows: jednou denně kontrola nové verze, nabídka „Aktualizovat“, stažení, instalace a restart; data zůstávají. V O aplikaci tlačítko Zkontrolovat aktualizaci.
 - Aktualizace jsou podepsané (aplikace přijme jen verzi podepsanou autorovým klíčem) a vydávají se ve veřejném repozitáři sprava-majetku (Releases).
