@@ -1,5 +1,11 @@
 # Správa majetku – seznam změn
 
+## 1.4 (28. 11. 2026)
+- Měřidla bytu: datum ověření (cejchu / kalibrace) ze štítku, platnost v letech (u vodoměrů předvyplněno 5 let) a výrobní číslo.
+- U měřidla je vidět „ověřeno do“, oranžově 90 dní před koncem, červeně po skončení.
+- Zvonek upozorní 90 dní před koncem ověření a po jeho skončení (proklik na byt).
+- Hlavní měřidla domu zatím ověření nemají (bývají v péči distributora).
+
 ## 1.3.1 (28. 11. 2026)
 - Grafika v5: nové ikony Osoby a role, Fond oprav, Plyn, Společné prostory, vlastní položka; ikony u voleb Rozúčtování nákladů.
 - Ilustrace prázdných stavů pro Osoby a role a Fond oprav.
