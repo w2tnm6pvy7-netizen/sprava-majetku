@@ -1,5 +1,10 @@
 # Správa majetku – seznam změn
 
+## 1.3.1 (28. 11. 2026)
+- Grafika v5: nové ikony Osoby a role, Fond oprav, Plyn, Společné prostory, vlastní položka; ikony u voleb Rozúčtování nákladů.
+- Ilustrace prázdných stavů pro Osoby a role a Fond oprav.
+- Oprava: ve Fondu oprav se u přehledu záloh podle bytů mohl zobrazit rok „undefined“.
+
 ## 1.3 (28. 11. 2026)
 - Menu rozdělené do skupin Dům, Lidé, Finance a Provoz; zrušena duplicitní položka „Domů“ (stejná jako Přehled).
 - Nová agenda Osoby a role: předseda, místopředseda / zástupce, člen výboru, hospodář, správce, jiná role; kontakty, ve funkci od–do, dřívější funkce zvlášť. Zatím jen evidence (bez účtů a práv).
