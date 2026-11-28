@@ -1,5 +1,11 @@
 # Správa majetku – seznam změn
 
+## 1.5 (28. 11. 2026)
+- Automatické aktualizace na Macu a ve Windows: jednou denně kontrola nové verze, nabídka „Aktualizovat“, stažení, instalace a restart; data zůstávají. V O aplikaci tlačítko Zkontrolovat aktualizaci.
+- Aktualizace jsou podepsané (aplikace přijme jen verzi podepsanou autorovým klíčem) a vydávají se ve veřejném repozitáři sprava-majetku (Releases).
+- Instalátor Windows je menší: WebView2 se stáhne jen tam, kde v systému chybí (Windows 10/11 ho obvykle mají).
+- Android se automaticky neaktualizuje (později přes obchod).
+
 ## 1.4 (28. 11. 2026)
 - Měřidla bytu: datum ověření (cejchu / kalibrace) ze štítku, platnost v letech (u vodoměrů předvyplněno 5 let) a výrobní číslo.
 - U měřidla je vidět „ověřeno do“, oranžově 90 dní před koncem, červeně po skončení.
