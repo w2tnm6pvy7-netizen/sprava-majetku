@@ -1,5 +1,16 @@
 # Správa majetku – seznam změn
 
+## 1.2 (28. 11. 2026)
+- Telefon: úspornější horní lišta (bez loga, kompaktní rok, motiv jedním tlačítkem), dolní lišta jako 4 tlačítka s ikonou a popiskem, bezpečný okraj u spodní hrany iPhonu.
+- Telefon na šířku: nižší lišty, více místa pro obsah.
+- Přehled na telefonu: dlaždice vedle sebe.
+- Upozornění pro iPhone/iPad jde zavřít křížkem (do příštího otevření).
+- Číslo verze v patičce menu; v O aplikaci verze, platforma, „Co je nového“ a tlačítko Zkontrolovat aktualizaci (webová verze).
+- U bytu nadpis „Rozúčtování nákladů“ a volba „Plyn“ (dříve „Byt je na plynu“).
+- Servisní režim (7× klepnout na číslo verze v O aplikaci): deník chyb a akcí, Nahlásit problém (bez jmen, telefonů, e-mailů a fotek), kontrola dat, vynucená aktualizace.
+- Při chybě se místo bílé obrazovky ukáže hláška s tlačítkem Nahlásit problém.
+- Před každým sestavením instalátorů proběhne automatický test všech tlačítek a lišt (počítač, tablet, iPhone na výšku i na šířku) a kontrola čísla verze.
+
 ## 1.1 (27. 11. 2026)
 - Menší a úspornější vzhled podle grafika: výchozí velikost „Střední“, menší písmo, tlačítka, menu, karty, průvodci i obrázky.
 - Nastavení → Velikost zobrazení: Malá / Střední / Velká (pamatuje se). Na dotykových zařízeních zůstávají ovládací prvky alespoň 48 px.
