@@ -1,5 +1,13 @@
 # Správa majetku – seznam změn
 
+## 1.3 (28. 11. 2026)
+- Menu rozdělené do skupin Dům, Lidé, Finance a Provoz; zrušena duplicitní položka „Domů“ (stejná jako Přehled).
+- Nová agenda Osoby a role: předseda, místopředseda / zástupce, člen výboru, hospodář, správce, jiná role; kontakty, ve funkci od–do, dřívější funkce zvlášť. Zatím jen evidence (bez účtů a práv).
+- Nová agenda Fond oprav: zálohy (od bytu nebo jiného přispěvatele), výdaje zaplacené i plánované, zůstatek, filtr, přehled záloh podle bytů za rok, upozornění, když plánované výdaje převyšují zůstatek.
+- U bytu „Rozúčtování nákladů“: Plyn, Bazén, Garáž, Zahrada, Společné prostory a všechny vlastní položky. Napojeno na stávající výpočet (plyn, bazén, položky rozúčtování) – hotová vyúčtování se nemění.
+- Karta „Další náklady“ v záložce Dům přejmenována na „Položky rozúčtování“.
+- Automatický test kontroluje i dvě funkce se stejným jménem.
+
 ## 1.2 (28. 11. 2026)
 - Telefon: úspornější horní lišta (bez loga, kompaktní rok, motiv jedním tlačítkem), dolní lišta jako 4 tlačítka s ikonou a popiskem, bezpečný okraj u spodní hrany iPhonu.
 - Telefon na šířku: nižší lišty, více místa pro obsah.
