@@ -1,5 +1,15 @@
 # Správa majetku – seznam změn
 
+## 1.6 (28. 11. 2026)
+- Nové rozvržení podle grafiky v6 pro 6 velikostí okna: telefon na výšku, telefon na šířku, tablet na výšku, tablet na šířku / menší notebook, počítač a široký monitor až 3840 px. Obsah se roztahuje podle okna (počítač do 1616 px, široký monitor do 3440 px), karty jsou ve více sloupcích, obrázky domu a bytů jsou na větším okně větší.
+- Telefon: spodní záložky Přehled / Byty / Odečty / Další (Další otevře celé menu), okna (dialogy) vyjíždějí zdola jako list, respektují se okraje iPhonu (výřez, domovský indikátor) i na šířku.
+- Tablet na výšku (iPad mini, iPad Pro na výšku, Android tablet): sbalené boční menu s ikonami, rozbalí se tlačítkem nabídky.
+- Velikost zobrazení: nově Automaticky (výchozí – na monitoru 4K bez zvětšení systému se aplikace sama zvětší), přibyly Velmi velká a Největší.
+- Kompaktní horní lišta pod 1440 px (motiv jedním tlačítkem, kratší štítek ukázkových dat).
+- Nové ikony od grafika: Hledat, Klíče a čipy, Revize a termíny, Krizová karta. Webová verze: ikony pro plochu iPhonu a iPadu, úvodní obrazovky, maskovatelná ikona pro Android. Windows: ikona ve všech velikostech.
+- Oprava: na širokém monitoru byla vpravo uříznutá horní lišta a vlevo spodní text menu (stránka byla o kousek širší než okno).
+- Automatický test kontroluje 21 velikostí obrazovky (iPhone mini až 4K) – přetečení stránky i horní lišty.
+
 ## 1.5.1 (28. 11. 2026)
 - Přehled: karta „Co je potřeba udělat“ (nejdůležitější upozornění na jednom místě, proklik) a zůstatek fondu oprav.
 - Nové agendy: Revize a termíny (samostatně v Provozu, rychlé přidání komín / kotel / hasicí přístroj…), Klíče a čipy (kdo má co, vráceno), Krizová karta (uzávěry, havarijní a tísňová čísla, funguje offline), Hledat (byty, nájemníci, osoby, měřidla, faktury, fond, revize, klíče).
